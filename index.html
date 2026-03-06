@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crew Gaming | Official Staff Application</title>
+    <style>
+        /* Sleek, Lag-Free & Professional Theme */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        :root {
+            --bg-dark: #070913;
+            --primary-blue: #0077ff;
+            --neon-cyan: #00f3ff;
+            --neon-purple: #9d4edd;
+            --text-light: #e2e8f0;
+            --glass-bg: rgba(15, 20, 40, 0.7);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #110d26 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Optimized Background Animation */
+        .bg-grid {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: 
+                linear-gradient(rgba(0, 119, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 119, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            animation: panGrid 20s linear infinite;
+        }
+        @keyframes panGrid {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(30px); }
+        }
+
+        /* Header Styling */
+        .header {
+            text-align: center;
+            padding: 50px 20px 20px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.3));
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8fa3b0;
+            margin-top: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Form Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            background: var(--glass-bg);
+            border: 1px solid rgba(0, 119, 255, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(0, 119, 255, 0.1);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        /* Section Headers */
+        .section-title {
+            font-size: 1.4rem;
+            color: #fff;
+            border-bottom: 2px solid var(--neon-purple);
+            padding-bottom: 10px;
+            margin: 40px 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 50%; height: 2px;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+        .section-title:first-child { margin-top: 0; }
+
+        /* Inputs & Labels */
+        .form-group {
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease-in-out forwards;
+            opacity: 0;
+        }
+        /* Staggered fade in for smooth load */
+        .form-group:nth-child(n) { animation-delay: 0.2s; }
+
+        label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #a0aec0;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .form-group:hover label { color: var(--neon-cyan); }
+
+        input[type="text"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(157, 78, 221, 0.4);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+            background: rgba(0, 0, 0, 0.6);
+            transform: translateY(-2px); /* Lag-free hover pop */
+        }
+        textarea { resize: vertical; min-height: 80px; }
+
+        /* Radio Buttons */
+        .radio-group { display: flex; gap: 20px; }
+        .radio-group label {
+            display: flex; align-items: center; cursor: pointer;
+            color: #fff; font-weight: 400; padding: 10px 20px;
+            background: rgba(0,0,0,0.3); border: 1px solid rgba(157, 78, 221, 0.4);
+            border-radius: 8px; transition: 0.3s; margin: 0;
+        }
+        .radio-group input[type="radio"] { display: none; }
+        .radio-group input[type="radio"]:checked + label {
+            background: rgba(157, 78, 221, 0.2);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+            color: var(--neon-cyan);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            margin-top: 30px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--neon-purple));
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 243, 255, 0.5);
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+        }
+        .submit-btn:active { transform: translateY(1px); }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container { padding: 25px; border-radius: 0; border-left: none; border-right: none; }
+            h1 { font-size: 2.2rem; }
+            .radio-group { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <div class="header">
+        <h1>Crew Gaming</h1>
+        <div class="subtitle">Official Staff Application</div>
+    </div>
+
+    <div class="container">
+        <form id="crewForm">
+            
+            <div class="section-title">[ Personal Information ]</div>
+            
+            <div class="form-group">
+                <label>Discord Username:</label>
+                <input type="text" id="discord" placeholder="e.g. username#1234 or @username" required>
+            </div>
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" id="age" placeholder="Your current age" required min="10" max="99">
+            </div>
+            <div class="form-group">
+                <label>Timezone:</label>
+                <input type="text" id="timezone" placeholder="e.g. IST, EST, GMT" required>
+            </div>
+
+            <div class="section-title">[ Experience & Qualifications ]</div>
+            
+            <div class="form-group">
+                <label>Role Applied For:</label>
+                <select id="role" required>
+                    <option value="" disabled selected>Select a role...</option>
+                    <option value="Moderator">Moderator</option>
+                    <option value="Event Manager">Event Manager</option>
+                    <option value="Support Staff">Support Staff</option>
+                    <option value="Administrator">Administrator</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Previous Moderation Experience:</label>
+                <textarea id="prevExp" placeholder="List servers, roles, and durations (or type 'None')" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Familiarity with Discord Moderation Bots:</label>
+                <textarea id="bots" placeholder="Which bots do you know? (Dyno, Carl-bot, etc.)" required></textarea>
+            </div>
+
+            <div class="section-title">[ Motivation & Availability ]</div>
+
+            <div class="form-group">
+                <label>Why do you want to join the Crew Gaming staff team?</label>
+                <textarea id="whyJoin" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>How many hours can you dedicate to the server daily?</label>
+                <input type="text" id="hours" placeholder="e.g. 3-4 hours" required>
+            </div>
+            <div class="form-group">
+                <label>What unique skills or improvements can you bring to our community?</label>
+                <textarea id="skills" required></textarea>
+            </div>
+
+            <div class="section-title">[ Scenario-Based Questions ]</div>
+
+            <div class="form-group">
+                <label>How would you handle a situation where two members are actively arguing and violating rules in a public channel?</label>
+                <textarea id="scenario1" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>If a user disrespects you while you are issuing a warning, how do you respond?</label>
+                <textarea id="scenario2" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>What immediate actions would you take if the server is being raided and no administrators are currently online?</label>
+                <textarea id="scenario3" required></textarea>
+            </div>
+
+            <div class="section-title">[ Agreement ]</div>
+
+            <div class="form-group">
+                <label>Do you agree to follow the staff guidelines and maintain professionalism at all times?</label>
+                <div class="radio-group">
+                    <input type="radio" id="agreeYes" name="agreement" value="Yes" required>
+                    <label for="agreeYes">Yes, I agree</label>
+                    <input type="radio" id="agreeNo" name="agreement" value="No">
+                    <label for="agreeNo">No, I do not</label>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Submit Application</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('crewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Tera Webhook URL
+            const webhookUrl = 'https://discord.com/api/webhooks/1479517646612467756/tatPjfezS5J8etm5WrktxdgMhvLAXlAoP5mbTkvjjDXL10_-vHbJr3Uuw9YRWfDUFGGH';
+            
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Submitting...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            const discordUser = document.getElementById('discord').value;
+            const roleApplied = document.getElementById('role').value;
+
+            // Formating data for Discord Embed
+            const payload = {
+                content: "<@&YOUR_STAFF_ROLE_ID_HERE>", // Yahan chaho toh staff role ka ID daal dena ping ke liye
+                embeds: [{
+                    title: "📋 New Staff Application | " + roleApplied,
+                    description: "**Applicant:** `" + discordUser + "`",
+                    color: 3447003, // Blue Theme Color
+                    fields: [
+                        { name: "👤 [ Personal Info ]", value: `**Age:** ${document.getElementById('age').value}\n**Timezone:** ${document.getElementById('timezone').value}`, inline: false },
+                        
+                        { name: "🛠️ [ Experience ]", value: `**Previous Exp:** ${document.getElementById('prevExp').value}\n**Bot Knowledge:** ${document.getElementById('bots').value}`, inline: false },
+                        
+                        { name: "⏱️ [ Motivation & Availability ]", value: `**Why Join:** ${document.getElementById('whyJoin').value}\n**Daily Hours:** ${document.getElementById('hours').value}\n**Unique Skills:** ${document.getElementById('skills').value}`, inline: false },
+                        
+                        { name: "🛡️ [ Scenarios ]", value: `**Q: Arguing Members:**\nA: ${document.getElementById('scenario1').value}\n\n**Q: Disrespectful User:**\nA: ${document.getElementById('scenario2').value}\n\n**Q: Server Raid:**\nA: ${document.getElementById('scenario3').value}`, inline: false },
+                        
+                        { name: "✅ [ Agreement ]", value: `**Agreed to Guidelines:** ${document.querySelector('input[name="agreement"]:checked').value}`, inline: false }
+                    ],
+                    thumbnail: {
+                        url: "https://cdn-icons-png.flaticon.com/512/5968/5968756.png" // Clean Discord icon for thumbnail
+                    },
+                    footer: { text: "Crew Gaming • Staff Application System" },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                alert("✅ Application Submitted Successfully! Thank you for applying.");
+                document.getElementById('crewForm').reset();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            })
+            .catch(error => {
+                alert("❌ Something went wrong. Please check your connection.");
+                console.error(error);
+            })
+            .finally(() => {
+                btn.innerText = "Submit Application";
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            });
+        });
+    </script>
+</body>
+  </html>
+  
