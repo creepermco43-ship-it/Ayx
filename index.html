@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crew Gaming | Elite Staff Application</title>
+    <style>
+        /* Base Setup & Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Syncopate:wght@700&display=swap');
+        
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #050510;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Moving Stars */
+        .stars {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -3;
+            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            animation: moveStars 60s linear infinite;
+            opacity: 0.6;
+        }
+        @keyframes moveStars {
+            from { background-position: 0 0; }
+            to { background-position: -1000px 1000px; }
+        }
+
+        /* Floating Neon Orbs (No images needed) */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -2;
+            animation: floatOrb 10s infinite alternate ease-in-out;
+        }
+        .orb-1 {
+            width: 300px; height: 300px;
+            background: #b026ff;
+            top: -50px; left: -50px;
+        }
+        .orb-2 {
+            width: 400px; height: 400px;
+            background: #00f3ff;
+            bottom: -100px; right: -100px;
+            animation-duration: 15s;
+        }
+        @keyframes floatOrb {
+            0% { transform: translateY(0) scale(1); opacity: 0.5; }
+            100% { transform: translateY(50px) scale(1.2); opacity: 0.8; }
+        }
+
+        /* Header Animations */
+        .header {
+            text-align: center;
+            padding: 60px 20px 30px;
+            animation: fadeInDown 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Cyberpunk Glitch Effect for Title */
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .glitch {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            position: relative;
+            color: #fff;
+            text-shadow: 0 0 20px #b026ff, 0 0 40px #00f3ff;
+            margin: 0;
+            letter-spacing: 4px;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #050510;
+        }
+        .glitch::before {
+            left: 3px;
+            text-shadow: -2px 0 #00f3ff;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+            clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+        }
+        .glitch::after {
+            left: -3px;
+            text-shadow: -2px 0 #b026ff;
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+            clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); transform: translate(0); }
+            20% { clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%); transform: translate(-5px, 2px); }
+            40% { clip-path: polygon(0 30%, 100% 30%, 100% 40%, 0 40%); transform: translate(5px, -2px); }
+            60% { clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); transform: translate(0); }
+            100% { clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%); transform: translate(-2px, 2px); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: polygon(0 15%, 100% 15%, 100% 25%, 0 25%); transform: translate(0); }
+            20% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); transform: translate(5px, -2px); }
+            40% { clip-path: polygon(0 40%, 100% 40%, 100% 50%, 0 50%); transform: translate(-5px, 2px); }
+            60% { clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0 100%); transform: translate(0); }
+            100% { clip-path: polygon(0 30%, 100% 30%, 100% 40%, 0 40%); transform: translate(2px, -2px); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #00f3ff;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            text-transform: uppercase;
+            animation: pulseText 2s infinite alternate;
+        }
+        @keyframes pulseText {
+            from { text-shadow: 0 0 10px #00f3ff; opacity: 0.8; }
+            to { text-shadow: 0 0 25px #00f3ff, 0 0 35px #fff; opacity: 1; }
+        }
+
+        /* Social Links */
+        .socials { margin-top: 20px; }
+        .socials a {
+            color: #fff; text-decoration: none; margin: 0 15px; font-weight: 600;
+            padding: 8px 15px; border-radius: 20px;
+            background: rgba(176, 38, 255, 0.2);
+            border: 1px solid #b026ff;
+            transition: 0.4s;
+            display: inline-block;
+        }
+        .socials a:hover {
+            background: #b026ff;
+            box-shadow: 0 0 15px #b026ff;
+            transform: translateY(-5px);
+        }
+
+        /* Animated Form Container */
+        .container {
+            max-width: 750px;
+            margin: 0 auto 60px auto;
+            background: rgba(15, 10, 30, 0.5);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 243, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1.5s ease-out, boxGlow 4s infinite alternate;
+        }
+        @keyframes boxGlow {
+            from { box-shadow: 0 0 20px rgba(176, 38, 255, 0.2); border-color: rgba(176, 38, 255, 0.3); }
+            to { box-shadow: 0 0 40px rgba(0, 243, 255, 0.4); border-color: rgba(0, 243, 255, 0.6); }
+        }
+
+        /* Form Questions & Inputs */
+        .question {
+            margin-bottom: 30px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: 0.4s;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid transparent;
+        }
+        .question:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #00f3ff;
+            transform: translateX(10px);
+            box-shadow: -5px 0 15px rgba(0, 243, 255, 0.2);
+        }
+
+        label {
+            display: block; font-size: 1.15rem; margin-bottom: 10px;
+            color: #b026ff; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .question:hover label { color: #00f3ff; }
+
+        input[type="text"], textarea, select {
+            width: 100%; padding: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(176, 38, 255, 0.5);
+            border-radius: 8px; color: #fff;
+            font-size: 1rem; font-family: 'Poppins', sans-serif;
+            box-sizing: border-box; transition: 0.4s;
+        }
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #00f3ff;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.02);
+        }
+
+        .radio-group label {
+            display: inline-block; margin-right: 20px;
+            color: #fff; font-weight: 400; text-transform: none;
+            cursor: pointer; padding: 10px 15px;
+            border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);
+            transition: 0.3s;
+        }
+        .radio-group input[type="radio"] { display: none; }
+        .radio-group label:hover {
+            border-color: #b026ff; box-shadow: 0 0 10px rgba(176, 38, 255, 0.5);
+        }
+        .radio-group input[type="radio"]:checked + label {
+            background: #b026ff; color: #fff; border-color: #b026ff;
+            box-shadow: 0 0 15px #b026ff; font-weight: bold;
+        }
+
+        /* Insane Submit Button Animation */
+        .submit-btn {
+            width: 100%; padding: 20px; margin-top: 20px;
+            background: linear-gradient(90deg, #b026ff, #00f3ff, #b026ff);
+            background-size: 200% auto;
+            border: none; border-radius: 12px;
+            color: #fff; font-size: 1.5rem; font-weight: 800;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 3px;
+            transition: 0.5s; position: relative; overflow: hidden;
+            animation: gradientMove 3s linear infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.6);
+            letter-spacing: 5px;
+        }
+        
+        /* Keyframes */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="header">
+        <div class="glitch-wrapper">
+            <h1 class="glitch" data-text="CREW GAMING">CREW GAMING</h1>
+        </div>
+        <div class="subtitle">Elite Staff Application</div>
+        
+        <div class="socials">
+            <a href="https://youtube.com/@crewgaming24?si=gqRnvjon0SyGEyKW" target="_blank">YouTube</a>
+            <a href="https://discord.gg/vcrew-gamingv-1102262290054664262" target="_blank">Discord</a>
+            <a href="https://www.instagram.com/ig_crewgaming?igsh=MWcxbjMydm40d3IxeA==" target="_blank">Instagram</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <form id="crewForm">
+            <div class="question">
+                <label>1. What is your Discord name?</label>
+                <input type="text" id="q1" placeholder="e.g. username#1234" required>
+            </div>
+            
+            <div class="question">
+                <label>2. What is your In Game Name (IGN)?</label>
+                <input type="text" id="q2" placeholder="Minecraft/Other IGN" required>
+            </div>
+
+            <div class="question">
+                <label>3. What is your age?</label>
+                <div class="radio-group">
+                    <input type="radio" id="age1" name="age" value="Under 15" required><label for="age1">Under 15</label>
+                    <input type="radio" id="age2" name="age" value="15-17"><label for="age2">15-17</label>
+                    <input type="radio" id="age3" name="age" value="17-25"><label for="age3">17-25</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>4. What is your Gender?</label>
+                <div class="radio-group">
+                    <input type="radio" id="gen1" name="gender" value="MALE" required><label for="gen1">MALE</label>
+                    <input type="radio" id="gen2" name="gender" value="Female"><label for="gen2">Female</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>5. What is your timezone?</label>
+                <input type="text" id="q5" placeholder="e.g. IST, EST, GMT" required>
+            </div>
+
+            <div class="question">
+                <label>6. What is your active time daily?</label>
+                <div class="radio-group">
+                    <input type="radio" id="time1" name="active" value="3-4HR" required><label for="time1">3-4 HR</label>
+                    <input type="radio" id="time2" name="active" value="4-6HR"><label for="time2">4-6 HR</label>
+                    <input type="radio" id="time3" name="active" value="6-8HR"><label for="time3">6-8 HR</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>7. Do you meet all necessary requirements?</label>
+                <div class="radio-group">
+                    <input type="radio" id="req1" name="req" value="YES" required><label for="req1">YESSS</label>
+                    <input type="radio" id="req2" name="req" value="NO"><label for="req2">NOOOOO</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>8. What made you apply for Crew Gaming?</label>
+                <textarea id="q8" rows="3" required></textarea>
+            </div>
+
+            <div class="question">
+                <label>9. What do you intend to achieve as a Crew Gaming DC staff?</label>
+                <textarea id="q9" rows="3" required></textarea>
+            </div>
+
+            <div class="question">
+                <label>10. Do you have any experience as a STAFF?</label>
+                <textarea id="q10" rows="2" placeholder="List servers or 'No'" required></textarea>
+            </div>
+
+            <div class="question">
+                <label>11. A new user joins and starts to spam over and over. What will you do?</label>
+                <textarea id="q11" rows="3" required></textarea>
+            </div>
+
+            <div class="question">
+                <label>12. How do you handle a disagreement with another staff member?</label>
+                <textarea id="q12" rows="2" required></textarea>
+            </div>
+
+            <div class="question">
+                <label>13. Are you familiar with basic Discord moderation bots?</label>
+                <select id="q13" required>
+                    <option value="" disabled selected>Select an option...</option>
+                    <option value="Yes, very experienced">Yes, very experienced (Dyno, Carl, etc.)</option>
+                    <option value="I know the basics">I know the basics</option>
+                    <option value="No, but willing to learn">No, but willing to learn</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>14. If a VIP member breaks a rule, how would you react?</label>
+                <textarea id="q14" rows="3" required></textarea>
+            </div>
+
+            <div class="question">
+                <label>15. Anything else you'd like the Crew Gaming management to know?</label>
+                <textarea id="q15" rows="2" placeholder="Extra skills, hobbies, etc."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">⚡ Submit Application</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('crewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Webhook URL (Tumhara diya hua)
+            const webhookUrl = 'https://discord.com/api/webhooks/1479517646612467756/tatPjfezS5J8etm5WrktxdgMhvLAXlAoP5mbTkvjjDXL10_-vHbJr3Uuw9YRWfDUFGGH';
+
+            const applicantName = document.getElementById('q1').value;
+            const applicantIgn = document.getElementById('q2').value;
+
+            // Submit Button Animation change on click
+            const btn = document.querySelector('.submit-btn');
+            btn.innerHTML = "Processing... ⌛";
+            btn.style.opacity = "0.7";
+
+            const payload = {
+                embeds: [{
+                    author: {
+                        name: "New Elite Staff Application",
+                        icon_url: "https://minotar.net/helm/" + applicantIgn + "/64.png"
+                    },
+                    title: "Applicant: " + applicantName,
+                    color: 5763719, // Cyberpunk Cyan-ish color
+                    fields: [
+                        { name: "1. Discord", value: applicantName, inline: true },
+                        { name: "2. IGN", value: applicantIgn, inline: true },
+                        { name: "3. Age", value: document.querySelector('input[name="age"]:checked').value, inline: true },
+                        { name: "4. Gender", value: document.querySelector('input[name="gender"]:checked').value, inline: true },
+                        { name: "5. Timezone", value: document.getElementById('q5').value, inline: true },
+                        { name: "6. Active Time", value: document.querySelector('input[name="active"]:checked').value, inline: true },
+                        { name: "7. Meets Reqs?", value: document.querySelector('input[name="req"]:checked').value, inline: true },
+                        { name: "8. Reason to Apply", value: document.getElementById('q8').value },
+                        { name: "9. Goals", value: document.getElementById('q9').value },
+                        { name: "10. Experience", value: document.getElementById('q10').value },
+                        { name: "11. Spam Scenario", value: document.getElementById('q11').value },
+                        { name: "12. Disagreement", value: document.getElementById('q12').value },
+                        { name: "13. Bots Knowledge", value: document.getElementById('q13').value },
+                        { name: "14. VIP Break Rule", value: document.getElementById('q14').value },
+                        { name: "15. Extra Info", value: document.getElementById('q15').value || "None" }
+                    ],
+                    thumbnail: {
+                        url: "https://minotar.net/helm/Creeper/100.png"
+                    },
+                    footer: { text: "Crew Gaming Automated System" },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                alert("🎉 Boom! Your application is submitted successfully!");
+                document.getElementById('crewForm').reset();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                btn.innerHTML = "⚡ Submit Application";
+                btn.style.opacity = "1";
+            })
+            .catch(error => {
+                alert("❌ Error sending application! Check console.");
+                console.error(error);
+                btn.innerHTML = "Try Again";
+                btn.style.opacity = "1";
+            });
+        });
+    </script>
+</body>
+</html>
