@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crew Gaming | Elite Staff Application</title>
+    <style>
+        /* Cyberpunk & Galaxy Theme (Neon Purple + Cyan) */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Syncopate:wght@700&display=swap');
+        
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #050510;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Moving Stars */
+        .stars {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -3;
+            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            animation: moveStars 60s linear infinite;
+            opacity: 0.6;
+        }
+        @keyframes moveStars {
+            from { background-position: 0 0; }
+            to { background-position: -1000px 1000px; }
+        }
+
+        /* Floating Neon Orbs (No Images) */
+        .orb {
+            position: fixed; border-radius: 50%; filter: blur(80px);
+            z-index: -2; animation: floatOrb 10s infinite alternate ease-in-out;
+        }
+        .orb-1 { width: 300px; height: 300px; background: #b026ff; top: -50px; left: -50px; }
+        .orb-2 { width: 400px; height: 400px; background: #00f3ff; bottom: -100px; right: -100px; animation-duration: 15s; }
+        @keyframes floatOrb {
+            0% { transform: translateY(0) scale(1); opacity: 0.4; }
+            100% { transform: translateY(50px) scale(1.2); opacity: 0.7; }
+        }
+
+        /* Header & Cyberpunk Glitch Effect */
+        .header { text-align: center; padding: 60px 20px 30px; animation: fadeInDown 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .glitch-wrapper { position: relative; display: inline-block; }
+        .glitch {
+            font-family: 'Syncopate', sans-serif; font-size: 3.5rem; font-weight: 700;
+            text-transform: uppercase; color: #fff; margin: 0; letter-spacing: 4px;
+            text-shadow: 0 0 20px #b026ff, 0 0 40px #00f3ff; position: relative;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #050510;
+        }
+        .glitch::before {
+            left: 3px; text-shadow: -2px 0 #00f3ff;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+            clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+        }
+        .glitch::after {
+            left: -3px; text-shadow: -2px 0 #b026ff;
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+            clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); transform: translate(0); }
+            20% { clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%); transform: translate(-5px, 2px); }
+            40% { clip-path: polygon(0 30%, 100% 30%, 100% 40%, 0 40%); transform: translate(5px, -2px); }
+            60% { clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); transform: translate(0); }
+            100% { clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%); transform: translate(-2px, 2px); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: polygon(0 15%, 100% 15%, 100% 25%, 0 25%); transform: translate(0); }
+            20% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); transform: translate(5px, -2px); }
+            40% { clip-path: polygon(0 40%, 100% 40%, 100% 50%, 0 50%); transform: translate(-5px, 2px); }
+            60% { clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0 100%); transform: translate(0); }
+            100% { clip-path: polygon(0 30%, 100% 30%, 100% 40%, 0 40%); transform: translate(2px, -2px); }
+        }
+        .subtitle { font-size: 1.3rem; color: #00f3ff; letter-spacing: 3px; margin-top: 10px; text-transform: uppercase; animation: pulseText 2s infinite alternate; font-weight: 600; }
+        @keyframes pulseText { from { text-shadow: 0 0 10px #00f3ff; opacity: 0.8; } to { text-shadow: 0 0 20px #00f3ff, 0 0 30px #fff; opacity: 1; } }
+
+        /* Animated Dark Glass Container */
+        .container {
+            max-width: 800px; margin: 0 auto 60px auto;
+            background: rgba(15, 10, 30, 0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 243, 255, 0.2); border-radius: 20px; padding: 45px; position: relative; z-index: 10;
+            animation: fadeInUp 1.5s ease-out, boxGlow 4s infinite alternate;
+        }
+        @keyframes boxGlow {
+            from { box-shadow: 0 0 20px rgba(176, 38, 255, 0.2); border-color: rgba(176, 38, 255, 0.3); }
+            to { box-shadow: 0 0 40px rgba(0, 243, 255, 0.4); border-color: rgba(0, 243, 255, 0.6); }
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.4rem; color: #fff; border-bottom: 2px solid #b026ff;
+            padding-bottom: 10px; margin: 40px 0 25px 0; text-transform: uppercase; letter-spacing: 2px;
+            display: inline-block; position: relative; font-weight: 800;
+        }
+        .section-title::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 50%; height: 2px; background: #00f3ff; box-shadow: 0 0 10px #00f3ff; }
+        .section-title:first-child { margin-top: 0; }
+
+        /* Form Inputs */
+        .form-group {
+            margin-bottom: 25px; padding: 15px; border-radius: 10px; transition: 0.4s;
+            background: rgba(255, 255, 255, 0.02); border-left: 3px solid transparent;
+        }
+        .form-group:hover {
+            background: rgba(255, 255, 255, 0.05); border-left: 3px solid #00f3ff;
+            transform: translateX(10px); box-shadow: -5px 0 15px rgba(0, 243, 255, 0.1);
+        }
+        label { display: block; font-size: 1.05rem; margin-bottom: 10px; color: #b026ff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .form-group:hover label { color: #00f3ff; }
+
+        input[type="text"], input[type="number"], input[type="email"], textarea, select {
+            width: 100%; padding: 15px; background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(176, 38, 255, 0.5); border-radius: 8px; color: #fff;
+            font-size: 1rem; font-family: 'Poppins', sans-serif; box-sizing: border-box; transition: 0.4s;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none; border-color: #00f3ff; box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+            background: rgba(0, 0, 0, 0.8); transform: scale(1.01);
+        }
+        textarea { resize: vertical; min-height: 90px; }
+
+        /* Radio Buttons */
+        .radio-group { display: flex; gap: 20px; }
+        .radio-group label {
+            display: flex; align-items: center; cursor: pointer; color: #fff; font-weight: 400; padding: 12px 20px;
+            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; transition: 0.3s;
+        }
+        .radio-group input[type="radio"] { display: none; }
+        .radio-group label:hover { border-color: #b026ff; box-shadow: 0 0 10px rgba(176, 38, 255, 0.5); }
+        .radio-group input[type="radio"]:checked + label {
+            background: rgba(176, 38, 255, 0.3); color: #fff; border-color: #00f3ff;
+            box-shadow: 0 0 15px #00f3ff; font-weight: bold;
+        }
+
+        /* Animated Submit Button */
+        .submit-btn {
+            width: 100%; padding: 20px; margin-top: 20px;
+            background: linear-gradient(90deg, #b026ff, #00f3ff, #b026ff); background-size: 200% auto;
+            border: none; border-radius: 12px; color: #fff; font-size: 1.5rem; font-weight: 800;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 3px; transition: 0.5s;
+            position: relative; overflow: hidden; animation: gradientMove 3s linear infinite; box-shadow: 0 0 20px rgba(176, 38, 255, 0.4);
+        }
+        @keyframes gradientMove { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+        .submit-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 40px rgba(0, 243, 255, 0.6); letter-spacing: 5px; }
+
+        /* SUCCESS OVERLAY (Dark & Neon) */
+        .success-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 15, 0.95); backdrop-filter: blur(15px);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 9999; opacity: 0; visibility: hidden; transition: 0.5s ease-in-out;
+        }
+        .success-overlay.active { opacity: 1; visibility: visible; }
+        
+        .check-circle {
+            width: 120px; height: 120px; border-radius: 50%;
+            background: #00f3ff; color: #050510;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 60px; font-weight: bold; transform: scale(0); transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 0 0 rgba(0, 243, 255, 0.7); animation: pulse-cyan 2s infinite;
+        }
+        .success-overlay.active .check-circle { transform: scale(1); }
+        
+        .success-text {
+            color: #fff; font-size: 3rem; font-weight: 800; margin-top: 30px; text-transform: uppercase; letter-spacing: 5px;
+            text-shadow: 0 0 20px #00f3ff, 0 0 40px #b026ff;
+            font-family: 'Syncopate', sans-serif; opacity: 0; transform: translateY(30px); transition: 0.5s 0.3s ease-out;
+        }
+        .success-overlay.active .success-text { opacity: 1; transform: translateY(0); }
+        
+        .success-sub { color: #a0aec0; font-size: 1.2rem; margin-top: 15px; letter-spacing: 2px; text-transform: uppercase; opacity: 0; transition: 0.5s 0.5s ease; }
+        .success-overlay.active .success-sub { opacity: 1; }
+
+        @keyframes pulse-cyan {
+            0% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0.7); }
+            70% { box-shadow: 0 0 0 30px rgba(0, 243, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0); }
+        }
+
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="success-overlay" id="successScreen">
+        <div class="check-circle">✓</div>
+        <div class="success-text">SYSTEM UPDATED</div>
+        <div class="success-sub">Application Successfully Sent to HQ</div>
+    </div>
+
+    <div class="header">
+        <div class="glitch-wrapper">
+            <h1 class="glitch" data-text="CREW GAMING">CREW GAMING</h1>
+        </div>
+        <div class="subtitle">Elite Staff Application</div>
+    </div>
+
+    <div class="container">
+        <form id="crewForm">
+            
+            <div class="section-title">1️⃣ Personal Information</div>
+            
+            <div class="form-group">
+                <label>Discord Username:</label>
+                <input type="text" id="discord" placeholder="e.g. username#1234 or @username" required>
+            </div>
+            <div class="form-group">
+                <label>Email Address:</label>
+                <input type="email" id="email" placeholder="your.email@gmail.com" required>
+            </div>
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" id="age" placeholder="Your current age" required min="13" max="99">
+            </div>
+            <div class="form-group">
+                <label>Timezone:</label>
+                <input type="text" id="timezone" placeholder="e.g. IST, EST, GMT" required>
+            </div>
+
+            <div class="section-title">2️⃣ Experience & Qualifications</div>
+            
+            <div class="form-group">
+                <label>Role Applied For:</label>
+                <select id="role" required>
+                    <option value="" disabled selected>Select a role...</option>
+                    <option value="Staff">Staff</option>
+                    <option value="Moderator">Moderator</option>
+                    <option value="Senior Moderator">Senior Moderator</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Previous Moderation Experience:</label>
+                <textarea id="prevExp" placeholder="List servers, roles, and durations (or type 'None')" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Familiarity with Discord Bots:</label>
+                <textarea id="bots" placeholder="Which bots do you know? (Dyno, Carl-bot, etc.)" required></textarea>
+            </div>
+
+            <div class="section-title">3️⃣ Motivation & Availability</div>
+
+            <div class="form-group">
+                <label>Why do you want to join the Crew Gaming staff team?</label>
+                <textarea id="whyJoin" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>How many hours can you dedicate daily?</label>
+                <input type="text" id="hours" placeholder="e.g. 3-4 hours" required>
+            </div>
+            <div class="form-group">
+                <label>What unique skills can you bring?</label>
+                <textarea id="skills" required></textarea>
+            </div>
+
+            <div class="section-title">4️⃣ Scenario Scenarios</div>
+
+            <div class="form-group">
+                <label>How would you handle two members actively arguing in public?</label>
+                <textarea id="scenario1" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>If a user disrespects you while issuing a warning, how do you respond?</label>
+                <textarea id="scenario2" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>What immediate action do you take if the server gets raided?</label>
+                <textarea id="scenario3" required></textarea>
+            </div>
+
+            <div class="section-title">✅ Agreement</div>
+
+            <div class="form-group">
+                <label>Do you agree to follow guidelines and maintain professionalism?</label>
+                <div class="radio-group">
+                    <input type="radio" id="agreeYes" name="agreement" value="Yes" required>
+                    <label for="agreeYes">Yes, I agree</label>
+                    <input type="radio" id="agreeNo" name="agreement" value="No">
+                    <label for="agreeNo">No, I do not</label>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">⚡ Submit Application</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('crewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Original Webhook Link
+            const webhookUrl = 'https://discord.com/api/webhooks/1479517646612467756/tatPjfezS5J8etm5WrktxdgMhvLAXlAoP5mbTkvjjDXL10_-vHbJr3Uuw9YRWfDUFGGH';
+            
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Processing Data... ⌛";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            const discordUser = document.getElementById('discord').value;
+            const roleApplied = document.getElementById('role').value;
+            const emailValue = document.getElementById('email').value;
+
+            // Highly Organized Discord Payload for perfect formatting
+            const payload = {
+                content: "🚨 New Application Alert! Ping: <@&baby.exe>", // Ping mention setup
+                embeds: [{
+                    title: "📋 " + roleApplied + " Application Form",
+                    description: "**Applicant:** `" + discordUser + "`",
+                    color: 11544319, // Neon Purple Color for Discord Embed
+                    fields: [
+                        { name: "👤 Person Info", value: `**Age:** ${document.getElementById('age').value}\n**Timezone:** ${document.getElementById('timezone').value}\n**Email:** ${emailValue}`, inline: false },
+                        { name: "🛠️ Previous Experience", value: document.getElementById('prevExp').value, inline: false },
+                        { name: "🤖 Bot Knowledge", value: document.getElementById('bots').value, inline: false },
+                        { name: "⏱️ Motivation (Why Join?)", value: document.getElementById('whyJoin').value, inline: false },
+                        { name: "🕒 Daily Active Hours", value: document.getElementById('hours').value, inline: false },
+                        { name: "🔥 Unique Skills", value: document.getElementById('skills').value, inline: false },
+                        { name: "⚔️ Scenario: Arguing Members", value: document.getElementById('scenario1').value, inline: false },
+                        { name: "🛡️ Scenario: Disrespectful User", value: document.getElementById('scenario2').value, inline: false },
+                        { name: "🌪️ Scenario: Server Raid", value: document.getElementById('scenario3').value, inline: false },
+                        { name: "✅ Agreed to Guidelines?", value: document.querySelector('input[name="agreement"]:checked').value, inline: false }
+                    ],
+                    thumbnail: {
+                        url: "https://cdn-icons-png.flaticon.com/512/5968/5968756.png" // Clean Icon
+                    },
+                    footer: { text: "Crew Gaming HQ System" },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                // Trigger Khatarnak Cinematic Overlay
+                const overlay = document.getElementById('successScreen');
+                overlay.classList.add('active'); 
+                
+                // Form Reset & Scroll Top
+                document.getElementById('crewForm').reset();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Hide overlay after 4.5 Seconds
+                setTimeout(() => {
+                    overlay.classList.remove('active');
+                }, 4500);
+            })
+            .catch(error => {
+                alert("❌ Critical Error: Could not connect to HQ. Check internet.");
+                console.error(error);
+            })
+            .finally(() => {
+                btn.innerText = "⚡ Submit Application";
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
